@@ -27,7 +27,7 @@ namespace YoutubeExplode
     {
         private async Task<string> GetVideoEmbedPageRawAsync(string videoId)
         {
-            var url = $"https://www.youtube.com/embed/{videoId}?disable_polymer=true&hl=en";
+            var url = $"https://www.youtube.com/embed/{videoId}?disable_polymer=true&hl=en&ratebypass=yes";
             return await _httpService.GetStringAsync(url).ConfigureAwait(false);
         }
 
@@ -42,7 +42,7 @@ namespace YoutubeExplode
 
         private async Task<string> GetVideoWatchPageRawAsync(string videoId)
         {
-            var url = $"https://www.youtube.com/watch?v={videoId}&disable_polymer=true&hl=en";
+            var url = $"https://www.youtube.com/watch?v={videoId}&disable_polymer=true&hl=en&ratebypass=yes";
             return await _httpService.GetStringAsync(url).ConfigureAwait(false);
         }
 
@@ -56,7 +56,7 @@ namespace YoutubeExplode
 
         private async Task<string> GetVideoInfoRawAsync(string videoId, string el = "", string sts = "")
         {
-            var url = $"https://www.youtube.com/get_video_info?video_id={videoId}&el={el}&sts={sts}&hl=en";
+            var url = $"https://www.youtube.com/get_video_info?video_id={videoId}&el={el}&sts={sts}&hl=en&ratebypass=yes";
             return await _httpService.GetStringAsync(url).ConfigureAwait(false);
         }
 
