@@ -122,5 +122,11 @@ namespace YoutubeExplode.Tests
             yield return new TestCaseData("youtube.com/channel/asd");
             yield return new TestCaseData("youtube.com/");
         }
+
+        public static IEnumerable GetVideoSearchQueries()
+        {
+            yield return new TestCaseData("undead corporation megalomania");
+            yield return new TestCaseData("white siberian fox");
+        }
     }
 }

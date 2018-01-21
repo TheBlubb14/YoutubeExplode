@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using YoutubeExplode.Internal;
 
 namespace YoutubeExplode.Models
@@ -12,36 +13,42 @@ namespace YoutubeExplode.Models
         /// <summary>
         /// ID of this playlist.
         /// </summary>
+        [NotNull]
         public string Id { get; }
 
-        /// <summary>
         /// Type of this playlist.
+        /// <summary>
         /// </summary>
         public PlaylistType Type { get; }
 
         /// <summary>
         /// Author of this playlist.
         /// </summary>
+        [NotNull]
         public string Author { get; }
 
         /// <summary>
         /// Title of this playlist.
         /// </summary>
+        [NotNull]
         public string Title { get; }
 
         /// <summary>
         /// Description of this playlist.
         /// </summary>
+        [NotNull]
         public string Description { get; }
 
         /// <summary>
         /// Statistics of this playlist.
         /// </summary>
+        [NotNull]
         public Statistics Statistics { get; }
 
         /// <summary>
         /// Collection of videos contained in this playlist.
         /// </summary>
+        [NotNull, ItemNotNull]
         public IReadOnlyList<Video> Videos { get; }
 
         /// <summary />
@@ -70,28 +77,28 @@ namespace YoutubeExplode.Models
         {
             id.GuardNotNull(nameof(id));
 
-            if (id.StartsWith("PL"))
+            if (id.StartsWith("PL", StringComparison.Ordinal))
                 return PlaylistType.Normal;
 
-            if (id.StartsWith("RD"))
+            if (id.StartsWith("RD", StringComparison.Ordinal))
                 return PlaylistType.VideoMix;
 
-            if (id.StartsWith("UL"))
+            if (id.StartsWith("UL", StringComparison.Ordinal))
                 return PlaylistType.ChannelVideoMix;
 
-            if (id.StartsWith("UU"))
+            if (id.StartsWith("UU", StringComparison.Ordinal))
                 return PlaylistType.ChannelVideos;
 
-            if (id.StartsWith("PU"))
+            if (id.StartsWith("PU", StringComparison.Ordinal))
                 return PlaylistType.PopularChannelVideos;
 
-            if (id.StartsWith("LL"))
+            if (id.StartsWith("LL", StringComparison.Ordinal))
                 return PlaylistType.LikedVideos;
 
-            if (id.StartsWith("FL"))
+            if (id.StartsWith("FL", StringComparison.Ordinal))
                 return PlaylistType.Favorites;
 
-            if (id.StartsWith("WL"))
+            if (id.StartsWith("WL", StringComparison.Ordinal))
                 return PlaylistType.WatchLater;
 
             throw new ArgumentOutOfRangeException(nameof(id), $"Unexpected playlist ID [{id}].");
